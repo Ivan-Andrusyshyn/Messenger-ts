@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/Messenger-ts/static/js/main.739b40dc.js",
+    "static/css/38.417cc2e1.chunk.css": "/Messenger-ts/static/css/38.417cc2e1.chunk.css",
+    "static/js/38.864a5de9.chunk.js": "/Messenger-ts/static/js/38.864a5de9.chunk.js",
+    "static/css/592.45b37a3a.chunk.css": "/Messenger-ts/static/css/592.45b37a3a.chunk.css",
+    "static/js/592.ce6f1d15.chunk.js": "/Messenger-ts/static/js/592.ce6f1d15.chunk.js",
+    "static/js/279.8ac3d0ba.chunk.js": "/Messenger-ts/static/js/279.8ac3d0ba.chunk.js",
+    "index.html": "/Messenger-ts/index.html",
+    "main.739b40dc.js.map": "/Messenger-ts/static/js/main.739b40dc.js.map",
+    "38.417cc2e1.chunk.css.map": "/Messenger-ts/static/css/38.417cc2e1.chunk.css.map",
+    "38.864a5de9.chunk.js.map": "/Messenger-ts/static/js/38.864a5de9.chunk.js.map",
+    "592.45b37a3a.chunk.css.map": "/Messenger-ts/static/css/592.45b37a3a.chunk.css.map",
+    "592.ce6f1d15.chunk.js.map": "/Messenger-ts/static/js/592.ce6f1d15.chunk.js.map",
+    "279.8ac3d0ba.chunk.js.map": "/Messenger-ts/static/js/279.8ac3d0ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.739b40dc.js"
+  ]
+}
