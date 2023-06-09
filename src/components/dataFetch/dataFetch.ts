@@ -3,14 +3,19 @@ interface APIEntry {
   API: string;
   Description?: string;
 }
-export const fetchData = async (setList: Function) => {
+const baseUrl = "https://api.publicapis.org/entries";
+
+const fetchBase = async (): Promise<APIEntry[]> => {
+  const { data } = await axios.get(`${baseUrl}`);
+  const listInfo = data.entries.slice(10, 20);
+  return listInfo;
+};
+export const fetchData = (setList: Function) => {
   try {
-    const { data } = await axios.get("https://api.publicapis.org/entries");
-    const listInfo = data.entries.slice(10, 20);
     const locale: string | null = JSON.parse(
       localStorage.getItem("contact") || "null"
     );
-    setList(locale && locale.length > 0 ? locale : listInfo);
+    setList(locale && locale.length > 0 ? locale : fetchBase());
   } catch (err) {
     console.log(err);
   }
@@ -22,9 +27,8 @@ export const fetchTextChat = async (
 ) => {
   try {
     setLoading(true);
-    const { data } = await axios.get("https://api.publicapis.org/entries");
-    const listInfo: APIEntry[] = data.entries.slice(0, 20);
-    const filter = listInfo.filter(({ API }) => API === chatId);
+    const data = await fetchBase();
+    const filter = data.filter(({ API }) => API === chatId);
     setList(filter);
   } catch (err) {
     console.log(err);

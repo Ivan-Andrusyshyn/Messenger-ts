@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import "./chatinfo.css";
 import { Loader } from "../Loader/Loader";
