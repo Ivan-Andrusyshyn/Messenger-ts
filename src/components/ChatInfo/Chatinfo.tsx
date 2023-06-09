@@ -2,33 +2,25 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import "./chatinfo.css";
-import { Loader } from "../loader/Loader";
+import { Loader } from "../Loader/Loader";
 import { Text } from "./TextChat/Text";
 import React from "react";
+import { fetchTextChat } from "../dataFetch/dataFetch";
+interface chatIdParams extends Record<string, string | undefined> {
+  chatId: string;
+}
 interface APIEntry {
   API: string;
   Description?: string;
 }
 const Chatinfo: React.FC = () => {
-  const { chatId } = useParams<{ chatId: string | undefined }>();
+  const { chatId } = useParams<chatIdParams>();
   const [list, setList] = useState<APIEntry[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get("https://api.publicapis.org/entries");
-        const listInfo: APIEntry[] = data.entries.slice(0, 20);
-        const filter = listInfo.filter(({ API }) => API === chatId);
-        setList(filter);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+    const validChatId = chatId || "";
+    fetchTextChat(validChatId, setLoading, setList);
   }, [chatId]);
 
   return (

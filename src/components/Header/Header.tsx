@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import "./header.css";
 import { Suspense } from "react";
 import React from "react";
-import { Loader } from "../loader/Loader";
+import { Loader } from "../Loader/Loader";
 const Header = () => {
   return (
     <Suspense fallback={<Loader />}>
