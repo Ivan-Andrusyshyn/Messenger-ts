@@ -10,12 +10,13 @@ const fetchBase = async (): Promise<APIEntry[]> => {
   const listInfo = data.entries.slice(10, 20);
   return listInfo;
 };
-export const fetchData = (setList: Function) => {
+export const fetchData = async (setList: Function) => {
   try {
+    const data = await fetchBase();
     const locale: string | null = JSON.parse(
       localStorage.getItem("contact") || "null"
     );
-    setList(locale && locale.length > 0 ? locale : fetchBase());
+    setList(locale && locale.length > 0 ? locale : data);
   } catch (err) {
     console.log(err);
   }
