@@ -1,5 +1,6 @@
 import axios from "axios";
 import "./sidebar.css";
+
 import React, { FC, useEffect, useState, ChangeEvent, Suspense } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { SearchComponent } from "./Search/SearchComponent";
@@ -12,7 +13,7 @@ type SidebarProps = {};
 
 const Sidebar: FC<SidebarProps> = () => {
   const [list, setList] = useState<Contact[]>([]);
-  const [colorLink, setColorLink] = useState<string>("");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,13 +39,18 @@ const Sidebar: FC<SidebarProps> = () => {
     );
     setList(filtered);
   };
-
-  const randomOnline = (): string => {
+  const deleteOnCLick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const search = e.currentTarget.id;
+    const filtered = list.filter(({ API }) => API !== search);
+    setList(filtered);
+    localStorage.setItem("contact", JSON.stringify(filtered));
+  };
+  const randomOnline = (): string | undefined => {
     const random = Math.floor(Math.random() * 10);
-    if (random > 5) {
-      return "#8FBC8F";
-    } else {
-      return "#88888844";
+    if (random > 5 && list.length === 10) {
+      return "#00FF00";
+    } else if (random < 5 && list.length === 10) {
+      return "#333333";
     }
   };
 
@@ -56,14 +62,14 @@ const Sidebar: FC<SidebarProps> = () => {
           <SearchComponent handleOnChange={handleOnChange} />
           {list.map(({ API }) => {
             return (
-              <Link
-                to={`${API}`}
-                style={{ backgroundColor: `${randomOnline()}` }}
-                className="contact"
-                key={API}
-              >
+              <Link to={`${API}`} className="contact" key={API}>
                 <span className="name">{API}</span>
-                <span className="status">Online</span>
+                <span className="status" style={{ color: `${randomOnline()}` }}>
+                  Online
+                </span>
+                <button className="btn_item" id={API} onClick={deleteOnCLick}>
+                  X
+                </button>
               </Link>
             );
           })}

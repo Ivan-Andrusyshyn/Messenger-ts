@@ -36,6 +36,7 @@
   margin-bottom: 10px;
   text-decoration: none;
   color: #333333;
+  position: relative;
 }
 
 .sidebar .contact:hover {
@@ -55,10 +56,29 @@
 
 .sidebar .status {
   margin-left: 10px;
-  color: #ffffff;
 }
 
 .container .content {
   flex-grow: 1;
   padding: 20px;
+}
+.btn_item {
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  right: -5px;
+  outline: none;
+  border: none;
+  top: -5px;
+  color: red;
+  position: absolute;
+  transition: transform 0.25s linear;
+}
+.btn_item:hover {
+  transform: scale(1.3);
 }
